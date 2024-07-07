@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+import requests
+
 
 class BaseEmployer(ABC):
     """Abstract class for creating Employer from API"""
@@ -34,3 +36,8 @@ class Employer(BaseEmployer):
             employers_list.append(employer)
 
         return employers_list
+
+    @staticmethod
+    def get_vacancies(vacancies_url):
+        response = requests.get(vacancies_url).json()
+        print(response)
