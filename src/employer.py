@@ -39,5 +39,5 @@ class Employer(BaseEmployer):
 
     @staticmethod
     def get_vacancies(vacancies_url):
-        response = requests.get(vacancies_url).json()
-        print(response)
+        response = requests.get(vacancies_url).json()['items']
+        return response
