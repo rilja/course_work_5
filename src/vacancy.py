@@ -4,13 +4,12 @@ from abc import ABC, abstractmethod
 class BaseVacancy(ABC):
     """Abstract class for creating vacancies from API"""
     @abstractmethod
-    def __init__(self, identification, name, url, salary, description, requirements):
+    def __init__(self, identification, name, url, salary, description):
         self.id = identification
         self.name = name
         self.url = url
         self.salary = salary if salary else 0
         self.description = description
-        self.requirements = requirements
 
     @classmethod
     def cast_to_object_list(cls, data):
@@ -18,8 +17,8 @@ class BaseVacancy(ABC):
 
 
 class Vacancy(BaseVacancy):
-    def __init__(self, identification, name, url, salary, description, requirements):
-        super().__init__(identification, name, url, salary, description, requirements)
+    def __init__(self, identification, name, url, salary, description):
+        super().__init__(identification, name, url, salary, description)
 
     @classmethod
     def cast_to_object_list(cls, data):
@@ -31,8 +30,7 @@ class Vacancy(BaseVacancy):
                           i.get('name'),
                           i.get('alternate_url'),
                           i.get('salary'),
-                          i.get('description'),
-                          i.get('requirements'))
+                          i.get('description'))
             vacancies.append(vacancy)
 
         return vacancies
